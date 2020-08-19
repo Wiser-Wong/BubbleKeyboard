@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp">
+
+    <Space
+        android:id="@+id/space_top_view"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_bubble_icon"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shape_round_grey_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_bubble_checked"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/bubble_selected"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_bubble_icon" />
+
+    <Space
+        android:id="@+id/space_bottom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bubble_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

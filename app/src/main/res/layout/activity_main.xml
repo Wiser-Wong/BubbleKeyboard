@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.wiser.bubblekeyboard.bubble.BubbleSelectView
+            android:id="@+id/bsv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0s"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp" />
+
+            <com.wiser.bubblekeyboard.record.RecordView
+                android:id="@+id/record_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rv_drawable="@drawable/shape_cycle_green_bg"
+                app:rv_line_color="@color/colorPrimaryDark"
+                app:rv_line_width="3dp"
+                app:rv_max_progress_time="5"
+                app:rv_padding="10dp"
+                app:type="order" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跳转"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

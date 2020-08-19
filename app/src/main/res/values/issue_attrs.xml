@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IssueTextView">
+        <attr name="itv_drawable_df_id" format="reference" />
+        <attr name="itv_drawable_st_id" format="reference" />
+        <attr name="itv_df_color" format="color" />
+        <attr name="itv_st_color" format="color" />
+    </declare-styleable>
+</resources>
