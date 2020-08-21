@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp">
+    android:layout_height="wrap_content">
 
     <Space
         android:id="@+id/space_top_view"
@@ -16,11 +14,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_bubble_icon"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
+        android:layout_width="64dp"
+        android:layout_height="33dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/shape_round_pink_bg"
+        android:src="@drawable/shape_round_60c05c_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
 
@@ -31,32 +29,45 @@
         app:layout_constraintTop_toTopOf="@+id/space_top_view">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="19dp"
+            android:layout_height="15dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/bubble_vip_icon" />
+            android:src="@drawable/bubble_vip_icon"
+            android:visibility="gone" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_round_purple_bg"
-            android:drawableStart="@drawable/bubble_vip_icon"
-            android:drawableLeft="@drawable/bubble_vip_icon"
+            android:background="@drawable/shape_round_8e76ff_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingTop="2dp"
             android:paddingEnd="5dp"
-            android:paddingBottom="2dp"
-            android:textSize="9sp"
-            android:gravity="center"
-            android:text="300"
-            android:textColor="#ffffff" />
+            android:paddingBottom="2dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="9dp"
+                android:layout_height="9dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bubble_star_icon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="300"
+                android:textColor="#ffffff"
+                android:textSize="9sp" />
+
+        </LinearLayout>
 
     </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_bubble_checked"
-        android:layout_width="13dp"
-        android:layout_height="13dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:adjustViewBounds="true"
         android:src="@drawable/bubble_selected"
         android:visibility="gone"

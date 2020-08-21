@@ -1,4 +1,4 @@
-package com.wiser.bubblekeyboard.keyboard;
+package com.wiser.bubblekeyboard.helper;
 
 import android.content.Context;
 import android.view.View;

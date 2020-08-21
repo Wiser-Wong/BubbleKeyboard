@@ -36,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/shape_round_grey_bg"
+                android:background="@drawable/shape_round19_eeeeee_bg"
                 android:hint="说点什么吧..."
                 android:maxHeight="85dp"
                 android:paddingStart="10dp"
@@ -89,8 +89,8 @@
                     android:text="发布"
                     android:textSize="13sp"
                     app:itv_df_color="#CCCCCC"
-                    app:itv_drawable_df_id="@drawable/shape_round_grey_bg"
-                    app:itv_drawable_st_id="@drawable/shape_round_pink_bg"
+                    app:itv_drawable_df_id="@drawable/shape_round19_eeeeee_bg"
+                    app:itv_drawable_st_id="@drawable/shape_round_60c05c_bg"
                     app:itv_st_color="#ffffff" />
 
             </RelativeLayout>

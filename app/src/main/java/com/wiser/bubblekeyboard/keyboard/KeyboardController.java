@@ -7,6 +7,7 @@ import java.util.List;
 import com.wiser.bubblekeyboard.R;
 import com.wiser.bubblekeyboard.bubble.BubbleData;
 import com.wiser.bubblekeyboard.bubble.BubbleSelectView;
+import com.wiser.bubblekeyboard.helper.InputHelper;
 import com.wiser.bubblekeyboard.helper.KeyboardHelper;
 
 import android.animation.LayoutTransition;

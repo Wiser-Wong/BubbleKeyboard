@@ -3,16 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.wiser.bubblekeyboard.keyboard.KeyboardFunctionController
+        android:id="@+id/keyboard_controller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="占位" />
-
-    <include
-        android:id="@+id/cl_keyboard_init"
-        layout="@layout/keyboard_default_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"/>
 
 </RelativeLayout>

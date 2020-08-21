@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.wiser.bubblekeyboard.R;
+import com.wiser.bubblekeyboard.utils.ScreenUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -29,39 +30,39 @@ import java.lang.ref.WeakReference;
  */
 public class RecordView extends View {
 
-	private static final int	UPDATE_PROGRESS		= 1000;			// 更新进度code
+	private static final int	UPDATE_PROGRESS		= 1000;									// 更新进度code
 
-	private static final int	DELAY				= 10;			// 延迟时长
+	private static final int	DELAY				= 10;									// 延迟时长
 
-	private static final int	ORDER_TYPE			= 2000;			// 顺序
+	private static final int	ORDER_TYPE			= 2000;									// 顺序
 
-	private static final int	FLASHBACK_TYPE		= 2001;			// 倒叙
+	private static final int	FLASHBACK_TYPE		= 2001;									// 倒叙
 
-	private int					lineType			= ORDER_TYPE;	// 录音倒计时UI类型
+	private int					lineType			= ORDER_TYPE;							// 录音倒计时UI类型
 
-	private Drawable			recordDrawable;						// 录音按钮
+	private Drawable			recordDrawable;												// 录音按钮
 
-	private float				recordHeight		= dp2px(100);	// 录音高度
+	private float				recordHeight		= ScreenUtil.dp2px(getContext(), 100);	// 录音高度
 
-	private float				recordPadding		= 15;			// 录音与倒计时线边距
+	private float				recordPadding		= 15;									// 录音与倒计时线边距
 
-	private float				recordLineWidth		= 5;			// 录音倒计时线宽度
+	private float				recordLineWidth		= 5;									// 录音倒计时线宽度
 
-	private RectF				recordRect;							// 录音按钮矩阵
+	private RectF				recordRect;													// 录音按钮矩阵
 
-	private RectF				recordLineRect;						// 录音倒计时线矩阵
+	private RectF				recordLineRect;												// 录音倒计时线矩阵
 
-	private Paint				recordLinePaint;					// 录音倒计时线画笔
+	private Paint				recordLinePaint;											// 录音倒计时线画笔
 
-	private int					recordLineColor		= Color.RED;	// 录音倒计时颜色
+	private int					recordLineColor		= Color.RED;							// 录音倒计时颜色
 
-	private float				currentProgress;					// 当前进度
+	private float				currentProgress;											// 当前进度
 
-	private float				maxProgressTime		= 5;			// 最大进度时间 单位（s）
+	private float				maxProgressTime		= 5;									// 最大进度时间 单位（s）
 
-	private float				currentProgressTime;				// 当前进度时间 单位（s）
+	private float				currentProgressTime;										// 当前进度时间 单位（s）
 
-	private float				lastProgressTime	= -1;			// 记录上一次时间
+	private float				lastProgressTime	= -1;									// 记录上一次时间
 
 	private RecordHandler		recordHandler;
 
@@ -260,7 +261,4 @@ public class RecordView extends View {
 		onRecordListener = null;
 	}
 
-	private int dp2px(int dp) {
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getContext().getResources().getDisplayMetrics());
-	}
 }

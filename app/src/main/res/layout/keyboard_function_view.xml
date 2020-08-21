@@ -8,7 +8,8 @@
 
     <include
         android:id="@+id/cl_keyboard_init"
-        layout="@layout/keyboard_default_view" />
+        layout="@layout/keyboard_default_view"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_keyboard_root"
@@ -24,26 +25,36 @@
             android:layout_height="wrap_content" />
 
         <FrameLayout
-            android:id="@+id/fl_input_background"
+            android:id="@+id/fl_input_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="14dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_input_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bubble_frame_bg"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
 
             <com.wiser.bubblekeyboard.keyboard.InputEditTextView
                 android:id="@+id/et_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_round15_grey_bg"
-                android:hint="说点什么吧..."
                 android:layout_gravity="center_vertical"
+                android:background="@drawable/shape_round19_eeeeee_bg"
+                android:hint="说点什么吧..."
                 android:maxHeight="100dp"
-                android:paddingStart="12dp"
+                android:paddingStart="17dp"
                 android:paddingTop="10dp"
-                android:paddingEnd="12dp"
+                android:paddingEnd="17dp"
                 android:paddingBottom="10dp"
                 android:textColor="#000000"
+                android:textColorHint="#9B9B9B"
                 android:textSize="14sp" />
 
         </FrameLayout>
@@ -53,13 +64,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:padding="8dp">
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp">
 
             <com.wiser.bubblekeyboard.keyboard.SwitchKeyboardAndVoiceView
                 android:id="@+id/keyboard_voice_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
                 app:skavv_keyboard_default_show="false"
                 app:skavv_keyboard_drawable="@drawable/chat_switch_keyboard"
                 app:skavv_voice_drawable="@drawable/chat_switch_voice" />
@@ -69,12 +83,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
                 android:layout_toStartOf="@+id/tv_issue"
                 android:layout_toLeftOf="@+id/tv_issue"
                 android:text="200"
-                android:textColor="#cccccc"
+                android:textColor="#749b9b9b"
                 android:textSize="13sp" />
 
             <com.wiser.bubblekeyboard.keyboard.IssueTextView
@@ -84,15 +96,19 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
                 android:paddingStart="15dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="5dp"
                 android:text="发布"
                 android:textSize="13sp"
-                app:itv_df_color="#CCCCCC"
-                app:itv_drawable_df_id="@drawable/shape_round_grey_bg"
-                app:itv_drawable_st_id="@drawable/shape_round_pink_bg"
+                app:itv_df_color="#ffffff"
+                app:itv_drawable_df_id="@drawable/shape_round_3060c05c_bg"
+                app:itv_drawable_st_id="@drawable/shape_round_60c05c_bg"
                 app:itv_st_color="#ffffff" />
 
         </RelativeLayout>
@@ -101,19 +117,13 @@
             android:id="@+id/fl_voice_root"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:clickable="true">
 
-            <com.wiser.bubblekeyboard.record.RecordView
-                android:id="@+id/record_view"
+            <com.wiser.bubblekeyboard.record.RecordGroupView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:rv_drawable="@drawable/shape_cycle_green_bg"
-                app:rv_line_color="@color/colorPrimaryDark"
-                app:rv_line_width="3dp"
-                app:rv_max_progress_time="5"
-                app:rv_padding="10dp"
-                app:type="order" />
+                android:layout_gravity="center"/>
 
         </FrameLayout>
 

@@ -63,19 +63,15 @@ public class BubbleAdapter extends BaseAdapter<BubbleData, BaseViewHolder> {
 					// 更新当前的选择
 					bubbleData.isCheck = !bubbleData.isCheck;
 					getItems().set(position, bubbleData);
-					notifyItemChanged(position);
-					// 选择监听
-					if (onCheckBubbleListener != null) onCheckBubbleListener.onCheckBubble(itemView, position, bubbleData.isCheck, false);
-					if (recordCurrentPosition < 0) {
-						recordCurrentPosition = position;
-						return;
-					}
 					// 更新上一个被选择的
 					BubbleData lastBubbleData = getItem(recordCurrentPosition);
 					lastBubbleData.isCheck = !lastBubbleData.isCheck;
 					getItems().set(recordCurrentPosition, lastBubbleData);
 					notifyItemChanged(recordCurrentPosition);
 					recordCurrentPosition = position;
+					notifyDataSetChanged();
+					// 选择监听
+					if (onCheckBubbleListener != null) onCheckBubbleListener.onCheckBubble(itemView, position, bubbleData.isCheck, false);
 				}
 			});
 		}
@@ -106,19 +102,15 @@ public class BubbleAdapter extends BaseAdapter<BubbleData, BaseViewHolder> {
 					// 更新当前的选择
 					bubbleData.isCheck = !bubbleData.isCheck;
 					getItems().set(position, bubbleData);
-					notifyItemChanged(position);
-					// 选择监听
-					if (onCheckBubbleListener != null) onCheckBubbleListener.onCheckBubble(itemView, position, bubbleData.isCheck, true);
-					if (recordCurrentPosition < 0) {
-						recordCurrentPosition = position;
-						return;
-					}
 					// 更新上一个被选择的
 					BubbleData lastBubbleData = getItem(recordCurrentPosition);
 					lastBubbleData.isCheck = !lastBubbleData.isCheck;
 					getItems().set(recordCurrentPosition, lastBubbleData);
 					notifyItemChanged(recordCurrentPosition);
 					recordCurrentPosition = position;
+					notifyDataSetChanged();
+					// 选择监听
+					if (onCheckBubbleListener != null) onCheckBubbleListener.onCheckBubble(itemView, position, bubbleData.isCheck, true);
 				}
 			});
 		}
