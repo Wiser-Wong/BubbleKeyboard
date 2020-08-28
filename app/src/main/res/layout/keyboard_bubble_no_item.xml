@@ -16,7 +16,7 @@
         android:id="@+id/iv_bubble_icon"
         android:layout_width="64dp"
         android:layout_height="33dp"
-        android:background="@drawable/bubble_no_bg"
+        android:background="@drawable/keyboard_bubble_no_bg"
         android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
@@ -26,7 +26,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/bubble_selected"
+        android:src="@drawable/keyboard_bubble_selected"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/iv_bubble_icon" />

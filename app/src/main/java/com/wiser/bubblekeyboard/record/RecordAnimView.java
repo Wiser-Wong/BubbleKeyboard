@@ -50,7 +50,7 @@ public class RecordAnimView extends LinearLayout implements View.OnTouchListener
 	}
 
 	@SuppressLint("ClickableViewAccessibility") private void init() {
-		LayoutInflater.from(getContext()).inflate(R.layout.record_anim_view, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.keyboard_record_anim_view, this, true);
 		setOrientation(LinearLayout.VERTICAL);
 		svgaImageView = findViewById(R.id.record_svga_image);
 		tvTime = findViewById(R.id.tv_record_time);

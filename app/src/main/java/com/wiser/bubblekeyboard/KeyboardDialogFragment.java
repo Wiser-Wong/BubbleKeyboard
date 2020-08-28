@@ -1,10 +1,7 @@
 package com.wiser.bubblekeyboard;
 
-import com.wiser.bubblekeyboard.helper.HandlerHelper;
 import com.wiser.bubblekeyboard.keyboard.KeyboardFunctionController;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -17,9 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
 
 /**
  * @author Wiser
@@ -51,6 +46,8 @@ public class KeyboardDialogFragment extends DialogFragment {
 		}
 
 		View view = inflater.inflate(R.layout.keyboard_dialog, container, false);
+		KeyboardFunctionController keyboardFunctionController = view.findViewById(R.id.keyboard_controller);
+		keyboardFunctionController.initInputClickStateShowUi();
 
 		// 遮挡状态栏
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -72,7 +69,8 @@ public class KeyboardDialogFragment extends DialogFragment {
 			if (window != null && getActivity() != null) {
 				WindowManager.LayoutParams wlp = window.getAttributes();
 				wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
-				wlp.height = WindowManager.LayoutParams.MATCH_PARENT;
+				wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+				wlp.gravity = Gravity.BOTTOM;
 				window.setAttributes(wlp);
 			}
 		}

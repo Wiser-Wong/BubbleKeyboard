@@ -36,7 +36,7 @@
                 android:id="@+id/record_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:rv_drawable="@drawable/shape_cycle_green_bg"
+                app:rv_drawable="@drawable/keyboard_shape_cycle_green_bg"
                 app:rv_line_color="@color/colorPrimaryDark"
                 app:rv_line_width="3dp"
                 app:rv_max_progress_time="5"
@@ -51,5 +51,11 @@
             android:text="跳转"/>
 
     </LinearLayout>
+
+    <com.wiser.bubblekeyboard.keyboard.KeyboardFunctionController
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"/>
 
 </RelativeLayout>

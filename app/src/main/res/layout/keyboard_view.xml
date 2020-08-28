@@ -8,13 +8,13 @@
 
     <include
         android:id="@+id/cl_keyboard_init"
-        layout="@layout/keyboard_default_view" />
+        layout="@layout/keyboard_default_view"/>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <LinearLayout
             android:id="@+id/ll_keyboard_root"
@@ -36,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/shape_round19_eeeeee_bg"
+                android:background="@drawable/keyboard_shape_round19_eeeeee_bg"
                 android:hint="说点什么吧..."
                 android:maxHeight="85dp"
                 android:paddingStart="10dp"
@@ -59,8 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     app:skavv_keyboard_default_show="false"
-                    app:skavv_keyboard_drawable="@drawable/chat_switch_keyboard"
-                    app:skavv_voice_drawable="@drawable/chat_switch_voice" />
+                    app:skavv_keyboard_drawable="@drawable/keyboard_chat_switch_keyboard"
+                    app:skavv_voice_drawable="@drawable/keyboard_chat_switch_voice" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_surplus_input_num"
@@ -89,8 +89,8 @@
                     android:text="发布"
                     android:textSize="13sp"
                     app:itv_df_color="#CCCCCC"
-                    app:itv_drawable_df_id="@drawable/shape_round19_eeeeee_bg"
-                    app:itv_drawable_st_id="@drawable/shape_round_60c05c_bg"
+                    app:itv_drawable_df_id="@drawable/keyboard_shape_round19_eeeeee_bg"
+                    app:itv_drawable_st_id="@drawable/keyboard_shape_round_60c05c_bg"
                     app:itv_st_color="#ffffff" />
 
             </RelativeLayout>
@@ -100,7 +100,7 @@
         <FrameLayout
             android:id="@+id/fl_voice_root"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
             android:visibility="gone"
             android:background="#ffffff">
 
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:rv_drawable="@drawable/shape_cycle_green_bg"
+                app:rv_drawable="@drawable/keyboard_shape_cycle_green_bg"
                 app:rv_line_color="@color/colorPrimaryDark"
                 app:rv_line_width="3dp"
                 app:rv_max_progress_time="5"

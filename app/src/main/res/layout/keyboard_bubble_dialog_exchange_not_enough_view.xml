@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:background="@drawable/shape_round10_ffffff_bg">
+    android:background="@drawable/keyboard_shape_round10_ffffff_bg">
 
     <Space
         android:id="@+id/space_top_view"
@@ -20,7 +20,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/bubble_star_no_enough_icon"
+        android:src="@drawable/keyboard_bubble_star_no_enough_icon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/shape_round_60c05c_bg"
+        android:background="@drawable/keyboard_shape_round_60c05c_bg"
         android:paddingStart="61dp"
         android:paddingTop="15dp"
         android:paddingEnd="61dp"

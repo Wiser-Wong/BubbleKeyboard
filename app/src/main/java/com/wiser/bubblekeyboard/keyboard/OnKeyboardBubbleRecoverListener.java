@@ -1,4 +1,4 @@
-package com.wiser.bubblekeyboard;
+package com.wiser.bubblekeyboard.keyboard;
 
 /**
  * @author Wiser

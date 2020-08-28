@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_round10_ffffff_bg"
+    android:background="@drawable/keyboard_shape_round10_ffffff_bg"
     android:clickable="true">
 
     <Space
@@ -21,7 +21,7 @@
         android:layout_height="77dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/bubble_bg"
+        android:src="@drawable/keyboard_bubble_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_round_8e76ff_bg"
+        android:background="@drawable/keyboard_shape_round_8e76ff_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="5dp"
@@ -43,7 +43,7 @@
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/bubble_star_icon" />
+            android:src="@drawable/keyboard_bubble_star_icon" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/shape_round_3060c05c_bg"
+        android:background="@drawable/keyboard_shape_round_3060c05c_bg"
         android:paddingStart="45dp"
         android:paddingTop="15dp"
         android:paddingEnd="45dp"
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/shape_round_60c05c_bg"
+        android:background="@drawable/keyboard_shape_round_60c05c_bg"
         android:paddingStart="45dp"
         android:paddingTop="15dp"
         android:paddingEnd="45dp"

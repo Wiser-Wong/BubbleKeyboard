@@ -6,7 +6,7 @@
     android:background="#7D000000">
 
     <include
-        layout="@layout/bubble_dialog_exchange_enough_view"
+        layout="@layout/keyboard_bubble_dialog_exchange_enough_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -14,7 +14,7 @@
         android:layout_marginEnd="15dp" />
 
     <include
-        layout="@layout/bubble_dialog_exchange_not_enough_view"
+        layout="@layout/keyboard_bubble_dialog_exchange_not_enough_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

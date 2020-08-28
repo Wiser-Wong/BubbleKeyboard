@@ -9,30 +9,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.wiser.bubblekeyboard.R;
+import com.wiser.bubblekeyboard.helper.KeyboardHelper;
 
 /**
  * @author Wiser
  * 
  *         录音组合控件
  */
-public class RecordGroupView extends FrameLayout {
+public class RecordGroupController extends FrameLayout {
 
 	private RecordAnimView		recordAnimView;
 
 	private RecordVoicePlayView	recordVoicePlayView;
 
-	public RecordGroupView(@NonNull Context context) {
+	public RecordGroupController(@NonNull Context context) {
 		super(context);
 		init();
 	}
 
-	public RecordGroupView(@NonNull Context context, @Nullable AttributeSet attrs) {
+	public RecordGroupController(@NonNull Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 		init();
 	}
 
 	private void init() {
-		LayoutInflater.from(getContext()).inflate(R.layout.record_group_view, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.keyboard_record_group_view, this, true);
 		recordAnimView = findViewById(R.id.record_view);
 		recordVoicePlayView = findViewById(R.id.record_play_view);
 
@@ -53,7 +54,7 @@ public class RecordGroupView extends FrameLayout {
 		recordAnimView.setOnRecordActionListener(new RecordAnimView.OnRecordActionListener() {
 
 			@Override public void onStartRecord() {// 开始录制
-
+				if (KeyboardHelper.bind() != null) KeyboardHelper.bind().onActionRecordStart();
 			}
 
 			@Override public void onRecordTime(int time) {
@@ -61,6 +62,7 @@ public class RecordGroupView extends FrameLayout {
 			}
 
 			@Override public void onStopRecord() {// 停止录制
+				if (KeyboardHelper.bind() != null) KeyboardHelper.bind().onActionRecordStop();
 				switchRecordLayoutUi(false);
 			}
 		});
@@ -71,15 +73,16 @@ public class RecordGroupView extends FrameLayout {
 		recordVoicePlayView.setOnRecordVoiceResultListener(new RecordVoicePlayView.OnRecordVoiceResultListener() {
 
 			@Override public void onAgainRecord() { // 重录
+				if (KeyboardHelper.bind() != null) KeyboardHelper.bind().onActionAgainRecord();
 				switchRecordLayoutUi(true);
 			}
 
 			@Override public void onIssueRecord() { // 发布
-
+				if (KeyboardHelper.bind() != null) KeyboardHelper.bind().onActionIssueVoice();
 			}
 
 			@Override public void onPlayRecord() { // 播放本地录音
-
+				if (KeyboardHelper.bind() != null) KeyboardHelper.bind().onActionPlayVoice();
 			}
 		});
 	}
@@ -98,5 +101,11 @@ public class RecordGroupView extends FrameLayout {
 			if (recordAnimView != null && recordAnimView.getVisibility() == VISIBLE) recordAnimView.setVisibility(GONE);
 			if (recordVoicePlayView != null && recordVoicePlayView.getVisibility() == GONE) recordVoicePlayView.setVisibility(VISIBLE);
 		}
+	}
+
+	@Override protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		recordAnimView = null;
+		recordVoicePlayView = null;
 	}
 }

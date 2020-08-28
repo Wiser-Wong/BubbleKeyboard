@@ -55,6 +55,12 @@ public class InputEditTextView extends AppCompatEditText {
 		return true;
 	}
 
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		onEditTextKeyboardBackListener = null;
+	}
+
 	public void setOnEditTextKeyboardBackListener(OnEditTextKeyboardBackListener onEditTextKeyboardBackListener) {
 		this.onEditTextKeyboardBackListener = onEditTextKeyboardBackListener;
 	}

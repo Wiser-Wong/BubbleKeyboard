@@ -4,19 +4,17 @@ import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.graphics.Color;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -45,14 +43,12 @@ import java.text.MessageFormat;
 
 /**
  * @author Wiser
- * 
+ *
  *         键盘功能控件
  */
-public class KeyboardFunctionController extends FrameLayout {
+public class KeyboardFunctionController1 extends FrameLayout {
 
 	private static final int				MAX_INPUT_LIMIT				= 200;									// 最大可输入数量
-
-	private FrameLayout						flRoot;																// 根布局
 
 	private FrameLayout						flInputRoot;														// 输入框根布局
 
@@ -80,8 +76,6 @@ public class KeyboardFunctionController extends FrameLayout {
 
 	private View							viewPlaceholder;													// 录音布局上面的占位布局 为了使键盘高度大于录音布局时切换流畅
 
-	private AnimAlphaBackgroundView			animAlphaBackgroundView;											// 动画透明背景度控件
-
 	private KeyboardListenerHelper			keyboardListenerHelper;												// 键盘显示隐藏监听帮助类
 
 	private InputHelper						inputHelper;														// 键盘显示隐藏方法类
@@ -96,12 +90,12 @@ public class KeyboardFunctionController extends FrameLayout {
 
 	private OnKeyboardBubbleRecoverListener	onKeyboardBubbleRecoverListener;
 
-	public KeyboardFunctionController(Context context) {
+	public KeyboardFunctionController1(Context context) {
 		super(context);
 		init();
 	}
 
-	public KeyboardFunctionController(Context context, @Nullable AttributeSet attrs) {
+	public KeyboardFunctionController1(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 		init();
 	}
@@ -115,14 +109,16 @@ public class KeyboardFunctionController extends FrameLayout {
 
 		inputHelper = new InputHelper(getContext());
 
-		LayoutInflater.from(getContext()).inflate(R.layout.keyboard_function_view, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.keyboard_function_controller, this, true);
 
 		initView();
 
 		initListener();
 
+		// 主要控制键盘显示隐藏改变动画
 		setLayoutTransition(true);
 
+		// getLayoutTransition().setAnimateParentHierarchy(false);
 	}
 
 	// 主要控制键盘显示隐藏改变动画
@@ -131,13 +127,14 @@ public class KeyboardFunctionController extends FrameLayout {
 			// 主要控制键盘显示隐藏改变动画
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 				// 设置给ViewGroup容器
-				if (flRoot != null) {
-					flRoot.setLayoutTransition(new LayoutTransition());
-					flRoot.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-				}
+				setLayoutTransition(new LayoutTransition());
+				getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+				llKeyboardRoot.setLayoutTransition(new LayoutTransition());
+				llKeyboardRoot.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 			}
 		} else {
-			if (flRoot != null) flRoot.setLayoutTransition(null);
+			setLayoutTransition(null);
+			llKeyboardRoot.setLayoutTransition(null);
 		}
 	}
 
@@ -146,7 +143,6 @@ public class KeyboardFunctionController extends FrameLayout {
 	 */
 	private void initView() {
 		flInputRoot = findViewById(R.id.fl_input_root);
-		flRoot = findViewById(R.id.fl_root);
 		ivInputBackground = findViewById(R.id.iv_input_background);
 		etInput = findViewById(R.id.et_input);
 		switchKeyboardAndVoiceView = findViewById(R.id.keyboard_voice_view);
@@ -159,7 +155,6 @@ public class KeyboardFunctionController extends FrameLayout {
 		clKeyboardInit = findViewById(R.id.cl_keyboard_init);
 		tvKeyboardInit = findViewById(R.id.tv_input_init);
 		ivVoiceInit = findViewById(R.id.iv_voice_init);
-		animAlphaBackgroundView = findViewById(R.id.anim_background_view);
 
 		// 防止touch事件处理焦点
 		setClickable(true);
@@ -170,13 +165,6 @@ public class KeyboardFunctionController extends FrameLayout {
 
 		// 添加初始气泡数据
 		if (KeyboardHelper.bind() != null) KeyboardHelper.bind().initKeyboardBubbleData(bubbleSelectView);
-
-		// 设置位置居底
-		FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) flRoot.getLayoutParams();
-		params.gravity = Gravity.BOTTOM;
-		// FrameLayout.LayoutParams params1 = (FrameLayout.LayoutParams)
-		// llKeyboardRoot.getLayoutParams();
-		// params1.gravity = Gravity.BOTTOM;
 
 	}
 
@@ -222,7 +210,7 @@ public class KeyboardFunctionController extends FrameLayout {
 			@Override public boolean onTouch(View v, MotionEvent event) {
 				// 点击其他位置时切换软键盘为隐藏
 				switchSoftKeyboardShowState(false);
-				((ViewGroup) ((ViewGroup) KeyboardFunctionController.this.getParent()).getParent()).performClick();
+				((ViewGroup) ((ViewGroup) KeyboardFunctionController1.this.getParent()).getParent()).performClick();
 				// 重置UI
 				resetUi();
 				return false;
@@ -351,32 +339,29 @@ public class KeyboardFunctionController extends FrameLayout {
 				isClickSwitch = true;
 				// 键盘图标显示时软键盘是处于收起状态
 				if (isKeyboard) {
-					// 切换到键盘图标的时候 切换输入框为隐藏
-					switchInputShowStateUi(false);
 					// 切换到键盘图标的时候 切换软键盘为隐藏
 					switchSoftKeyboardShowState(false);
+					// 切换到键盘图标的时候 切换输入框为隐藏
+					switchInputShowStateUi(false);
 				} else { // 语音图标显示时软键盘是处于打开状态
 					// 切换到录音图标的时候 切换输入框为显示
 					switchInputShowStateUi(true);
-//					// 输入框重新获取焦点
-//					if (isClickVoiceForKeyboard) {
-//						HandlerHelper.mainLooper().execute(new Runnable() {
-//
-//							@Override public void run() {
-//								// 由于先获取焦点，会出现软键盘弹出时整体布局向上顶一下，然后执行输入框显示动画，会跳动闪烁，所以加延迟获取焦点
-//								etInput.requestFocus();
+					// 输入框重新获取焦点
+					if (isClickVoiceForKeyboard) {
+						HandlerHelper.mainLooper().execute(new Runnable() {
+
+							@Override public void run() {
+								// 由于先获取焦点，会出现软键盘弹出时整体布局向上顶一下，然后执行输入框显示动画，会跳动闪烁，所以加延迟获取焦点
+								if (etInput != null) etInput.requestFocus();
 //								// 切换到录音图标的时候 切换软键盘为显示
-//								switchSoftKeyboardShowState(true);
-//							}
-//						}, flRoot != null && flRoot.getLayoutTransition() != null ? flRoot.getLayoutTransition().getDuration(LayoutTransition.CHANGING) : 300);
-//					} else {
-//						etInput.requestFocus();
-//						// 切换到录音图标的时候 切换软键盘为显示
-//						switchSoftKeyboardShowState(true);
-//					}
-					etInput.requestFocus();
-					// 切换到录音图标的时候 切换软键盘为显示
-					switchSoftKeyboardShowState(true);
+								switchSoftKeyboardShowState(true);
+							}
+						}, getLayoutTransition() != null ? getLayoutTransition().getDuration(LayoutTransition.CHANGING) : 300);
+
+					} else {
+						// 切换到录音图标的时候 切换软键盘为显示
+						switchSoftKeyboardShowState(true);
+					}
 				}
 			}
 		});
@@ -398,22 +383,29 @@ public class KeyboardFunctionController extends FrameLayout {
 	 * 初始化软键盘监听
 	 */
 	private void initSoftKeyboardListener() {
-		keyboardListenerHelper = new KeyboardListenerHelper(getRootView());
+		keyboardListenerHelper = new KeyboardListenerHelper(scanForActivity(getContext()).findViewById(android.R.id.content));
 		keyboardListenerHelper.addSoftKeyboardStateListener(new KeyboardListenerHelper.SoftKeyboardStateListener() {
 
 			@Override public void onSoftKeyboardOpened(final int keyboardHeightInPx) {
 				// 点击键盘和录音按钮切换的时候，不处理以下 或者第一次点击了初始按钮录音调起的录音布局，然后切换到键盘执行以下
 				if (!isClickSwitch || isClickVoiceForKeyboard) {
-					KeyboardFunctionController.this.keyboardHeightInPx = keyboardHeightInPx;
+					KeyboardFunctionController1.this.keyboardHeightInPx = keyboardHeightInPx;
+					// 设置录音布局高度 并且添加动画显示
+					setRecordLayoutHeight();
 					// 隐藏默认布局 显示键盘布局
 					switchInitLayoutAndKeyboardLayoutShowStateUi(false);
 					// 显示键盘的时候要将键盘和录音图标恢复到键盘图标
 					if (switchKeyboardAndVoiceView != null && switchKeyboardAndVoiceView.isKeyboard()) switchKeyboardAndVoiceView.updateSwitch();
-					// 设置录音布局高度 并且添加动画显示
-					setRecordLayoutHeight();
 					isClickVoiceForKeyboard = false;
 				}
 				isClickSwitch = false;
+
+				HandlerHelper.mainLooper().execute(new Runnable() {
+
+					@Override public void run() {
+						if (etInput != null) etInput.requestFocus();
+					}
+				}, getLayoutTransition() != null ? getLayoutTransition().getDuration(LayoutTransition.CHANGING) : 300);
 			}
 
 			@Override public void onSoftKeyboardClosed() {
@@ -436,23 +428,9 @@ public class KeyboardFunctionController extends FrameLayout {
 	 */
 	private void switchSoftKeyboardShowState(boolean isShow) {
 		if (isShow) { // 显示软键盘
-			if (inputHelper != null) inputHelper.showSoftInput(etInput);
-			switchControllerFocus(false);
+			if (inputHelper != null) inputHelper.showSoftInput(getRootView());
 		} else { // 隐藏软键盘
 			if (inputHelper != null) inputHelper.hideSoftInput(etInput);
-			switchControllerFocus(true);
-		}
-	}
-
-	private void switchControllerFocus(boolean isFocus) {
-		if (isFocus) {
-			setFocusable(true);
-			setFocusableInTouchMode(true);
-			requestFocus();
-		} else {
-			setFocusable(false);
-			setFocusableInTouchMode(false);
-			clearFocus();
 		}
 	}
 
@@ -563,10 +541,6 @@ public class KeyboardFunctionController extends FrameLayout {
 	 * 初始输入框点击 显示UI
 	 */
 	public void initInputClickStateShowUi() {
-		// 设置控制器尺寸全屏
-		switchControllerMeasure(true);
-		// 点击初始输入框时 输入框显示
-		if (flInputRoot != null) flInputRoot.setVisibility(VISIBLE);
 		// 切换输入框为显示
 		switchInputShowStateUi(true);
 		// 输入框获取焦点
@@ -579,10 +553,6 @@ public class KeyboardFunctionController extends FrameLayout {
 	 * 初始录音点击 显示UI
 	 */
 	public void initVoiceClickStateShowUi() {
-		// 切换控制器焦点为了监听返回键
-		switchControllerFocus(true);
-		// 设置控制器尺寸全屏
-		switchControllerMeasure(true);
 		// 点击初始录音按钮 记录点击，防止无法执行软键盘显示逻辑
 		isClickVoiceForKeyboard = true;
 		// 切换输入框为隐藏
@@ -596,50 +566,9 @@ public class KeyboardFunctionController extends FrameLayout {
 	}
 
 	/**
-	 * 切换该控件尺寸
-	 * 
-	 * @param isFullScreen
-	 *            是否全屏
-	 */
-	private void switchControllerMeasure(final boolean isFullScreen) {
-		if (isFullScreen) {
-			setLayoutTransition(false);
-			MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
-			params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-			params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-
-			if (animAlphaBackgroundView != null) {
-				MarginLayoutParams params1 = (MarginLayoutParams) animAlphaBackgroundView.getLayoutParams();
-				params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
-				params1.height = ViewGroup.LayoutParams.MATCH_PARENT;
-			}
-
-			HandlerHelper.mainLooper().execute(new Runnable() {
-
-				@Override public void run() {
-					setLayoutTransition(true);
-				}
-			}, 300);
-		} else {
-			MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
-			params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-			params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-
-			if (animAlphaBackgroundView != null) {
-				MarginLayoutParams params1 = (MarginLayoutParams) animAlphaBackgroundView.getLayoutParams();
-				params1.width = ViewGroup.LayoutParams.MATCH_PARENT;
-				params1.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-			}
-		}
-		if (animAlphaBackgroundView != null) animAlphaBackgroundView.setAnimBackground(isFullScreen);
-	}
-
-	/**
 	 * 恢复默认样式
 	 */
 	public void resetUi() {
-		// 切换控件尺寸为自适应
-		switchControllerMeasure(false);
 		// 恢复最初显示隐藏状态
 		switchInitLayoutAndKeyboardLayoutShowStateUi(true);
 		// 键盘和录音图标切换恢复最初状态
@@ -652,7 +581,7 @@ public class KeyboardFunctionController extends FrameLayout {
 
 	/**
 	 * 切换初始布局和键盘整体根布局显示UI
-	 * 
+	 *
 	 * @param isResetInitLayoutShow
 	 *            是否显示键盘整体根布局
 	 */
@@ -698,17 +627,6 @@ public class KeyboardFunctionController extends FrameLayout {
 		onKeyboardBubbleRecoverListener = null;
 		ivInputBackground = null;
 		tvIssue = null;
-	}
-
-	@Override public boolean dispatchKeyEvent(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-			// 具体的操作代码
-			if (llKeyboardRoot != null && llKeyboardRoot.getVisibility() == VISIBLE && switchKeyboardAndVoiceView.isKeyboard()) {
-				resetUi();
-				return true;
-			}
-		}
-		return super.dispatchKeyEvent(event);
 	}
 
 	private Activity scanForActivity(Context cont) {

@@ -13,17 +13,6 @@ public class InputHelper {
 
 	private InputMethodManager manager;
 
-	private static InputHelper input;
-
-	public static InputHelper getInstance(Context context){
-		if (input == null){
-			synchronized (InputHelper.class){
-				if (input == null) input = new InputHelper(context);
-			}
-		}
-		return input;
-	}
-
 	public InputHelper(Context context) {
 		if (manager == null) manager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 	}
@@ -32,7 +21,7 @@ public class InputHelper {
 	 * 隐藏软键盘
 	 */
 	public void hideSoftInput(View view) {
-		if (view == null) return;
+		if (view == null || manager == null) return;
 		manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 	}
 
@@ -40,7 +29,22 @@ public class InputHelper {
 	 * 显示软键盘
 	 */
 	public void showSoftInput(EditText editText) {
-		if (editText == null) return;
+		if (editText == null || manager == null) return;
 		manager.showSoftInput(editText, InputMethodManager.SHOW_FORCED);
+	}
+
+	/**
+	 * 强制打开键盘
+	 * @param rootView
+	 */
+	public void showSoftInput(View rootView) {
+		if (rootView == null || manager == null) return;
+		if (!manager.isActive(rootView)) {
+			manager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+		}
+	}
+
+	public void detach() {
+		manager = null;
 	}
 }

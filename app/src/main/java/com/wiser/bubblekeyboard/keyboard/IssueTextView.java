@@ -86,4 +86,10 @@ public class IssueTextView extends AppCompatTextView implements View.OnClickList
 	@Override public void onClick(View v) {
 		if (onIssueClickListener != null) onIssueClickListener.onIssueClick(v, content);
 	}
+
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		onIssueClickListener = null;
+	}
 }

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/record_voice_play_bg"
+        android:background="@drawable/keyboard_record_voice_play_bg"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,10 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:src="@drawable/record_voice_play_icon" />
+            android:src="@drawable/keyboard_record_voice_play_icon" />
 
         <Space
-            android:layout_width="150dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:background="@drawable/shape_round_3060c05c_bg"
+        android:background="@drawable/keyboard_shape_round_3060c05c_bg"
         android:paddingStart="45dp"
         android:paddingTop="12dp"
         android:paddingEnd="45dp"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:background="@drawable/shape_round_60c05c_bg"
+        android:background="@drawable/keyboard_shape_round_60c05c_bg"
         android:paddingStart="45dp"
         android:paddingTop="12dp"
         android:paddingEnd="45dp"

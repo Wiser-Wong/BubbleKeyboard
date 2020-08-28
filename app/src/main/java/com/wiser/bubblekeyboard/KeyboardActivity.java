@@ -1,8 +1,6 @@
 package com.wiser.bubblekeyboard;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -14,11 +12,19 @@ public class KeyboardActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
 
-        findViewById(R.id.cl_keyboard_init).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KeyboardBubbleActivity.showKeyboardDialog(KeyboardActivity.this);
-            }
-        });
+//        findViewById(R.id.tv_input_init).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                KeyboardBubbleActivity.showKeyboardDialog(KeyboardActivity.this, KeyboardConstants.KEYBOARD_TYPE);
+//            }
+//        });
+//
+//        findViewById(R.id.iv_voice_init).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                KeyboardBubbleActivity.showKeyboardDialog(KeyboardActivity.this, KeyboardConstants.VOICE_TYPE);
+////                KeyboardDialogFragment.showKeyboardDialog().show(getSupportFragmentManager(),KeyboardDialogFragment.class.getSimpleName());
+//            }
+//        });
     }
 }

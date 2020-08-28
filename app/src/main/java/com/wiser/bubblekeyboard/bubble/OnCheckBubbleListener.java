@@ -9,6 +9,6 @@ import android.view.View;
  */
 public interface OnCheckBubbleListener {
 
-	void onCheckBubble(View view, int position,boolean isChecked,boolean isNoBubble);
+	void onCheckBubble(BubbleAdapter bubbleAdapter,View view, BubbleData bubbleData, int position,boolean isChecked,boolean isNoBubble);
 
 }

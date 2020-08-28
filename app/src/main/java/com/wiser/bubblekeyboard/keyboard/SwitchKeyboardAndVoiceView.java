@@ -19,7 +19,7 @@ public class SwitchKeyboardAndVoiceView extends AppCompatImageView implements Vi
 
 	private boolean								isKeyboard	= true;
 
-	private boolean								recordInitKeyboard;					// 记录初始isKeyboard值
+	private boolean								sourceIsKeyboard;					// 记录初始isKeyboard值
 
 	private OnSwitchKeyboardAndVoiceListener	onSwitchKeyboardAndVoiceListener;
 
@@ -40,7 +40,7 @@ public class SwitchKeyboardAndVoiceView extends AppCompatImageView implements Vi
 	private void init(AttributeSet attrs) {
 
 		TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwitchKeyboardAndVoiceView);
-		recordInitKeyboard = isKeyboard = ta.getBoolean(R.styleable.SwitchKeyboardAndVoiceView_skavv_keyboard_default_show, true);
+		sourceIsKeyboard = isKeyboard = ta.getBoolean(R.styleable.SwitchKeyboardAndVoiceView_skavv_keyboard_default_show, true);
 		drawableKeyboardId = ta.getResourceId(R.styleable.SwitchKeyboardAndVoiceView_skavv_keyboard_drawable, -1);
 		drawableVoiceId = ta.getResourceId(R.styleable.SwitchKeyboardAndVoiceView_skavv_voice_drawable, -1);
 		ta.recycle();
@@ -63,8 +63,8 @@ public class SwitchKeyboardAndVoiceView extends AppCompatImageView implements Vi
 
 	// 重置
 	public void reset() {
-		isKeyboard = recordInitKeyboard;
-		if (recordInitKeyboard) {
+		isKeyboard = sourceIsKeyboard;
+		if (sourceIsKeyboard) {
 			if (drawableKeyboardId != -1) setBackgroundResource(drawableKeyboardId);
 		} else {
 			if (drawableVoiceId != -1) setBackgroundResource(drawableVoiceId);
@@ -85,5 +85,10 @@ public class SwitchKeyboardAndVoiceView extends AppCompatImageView implements Vi
 			if (drawableKeyboardId != -1) setBackgroundResource(drawableKeyboardId);
 			isKeyboard = true;
 		}
+	}
+
+	@Override protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		onSwitchKeyboardAndVoiceListener = null;
 	}
 }

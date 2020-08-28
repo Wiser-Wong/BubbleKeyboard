@@ -1,79 +1,26 @@
 package com.wiser.bubblekeyboard.helper;
 
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewTreeObserver;
-
-import java.util.LinkedList;
-import java.util.List;
+import com.wiser.bubblekeyboard.core.IKeyboardBind;
 
 /**
  * @author Wiser
  * 
- *         软件盘帮助类
+ *         键盘帮助类
  */
-public class KeyboardHelper implements ViewTreeObserver.OnGlobalLayoutListener {
+public class KeyboardHelper {
 
-	public interface SoftKeyboardStateListener {
+	private static IKeyboardBind iKeyboardBind = null;
 
-		void onSoftKeyboardOpened(int keyboardHeightInPx);
-
-		void onSoftKeyboardClosed();
+	public static void inject(IKeyboardBind iKeyboardBind) {
+		KeyboardHelper.iKeyboardBind = iKeyboardBind;
 	}
 
-	private final List<SoftKeyboardStateListener>	listeners	= new LinkedList<>();
-
-	private final View								activityRootView;
-
-	private boolean									isSoftKeyboardOpened;
-
-	public KeyboardHelper(View activityRootView) {
-		this(activityRootView, false);
+	public static IKeyboardBind bind() {
+		if (iKeyboardBind != null) return iKeyboardBind;
+		return IKeyboardBind.defaultBind;
 	}
 
-	public KeyboardHelper(View activityRootView, boolean isSoftKeyboardOpened) {
-		this.activityRootView = activityRootView;
-		this.isSoftKeyboardOpened = isSoftKeyboardOpened;
-		activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+	public static void onDetach() {
+		KeyboardHelper.iKeyboardBind = null;
 	}
-
-	@Override public void onGlobalLayout() {
-		final Rect r = new Rect();
-		activityRootView.getWindowVisibleDisplayFrame(r);
-
-		final int heightDiff = activityRootView.getRootView().getHeight() - (r.bottom - r.top) - StatusBarHelper.getStatusBarHeight(activityRootView.getContext())
-				- StatusBarHelper.getNavigationBarHeightRoom(activityRootView.getContext());
-		if (!isSoftKeyboardOpened && heightDiff > 100) {
-			isSoftKeyboardOpened = true;
-			notifyOnSoftKeyboardOpened(heightDiff);
-		} else if (isSoftKeyboardOpened && heightDiff < 100) {
-			isSoftKeyboardOpened = false;
-			notifyOnSoftKeyboardClosed();
-		}
-	}
-
-	public void addSoftKeyboardStateListener(SoftKeyboardStateListener listener) {
-		listeners.add(listener);
-	}
-
-	public void detach() {
-		activityRootView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-	}
-
-	private void notifyOnSoftKeyboardOpened(int keyboardHeightInPx) {
-		for (SoftKeyboardStateListener listener : listeners) {
-			if (listener != null) {
-				listener.onSoftKeyboardOpened(keyboardHeightInPx);
-			}
-		}
-	}
-
-	private void notifyOnSoftKeyboardClosed() {
-		for (SoftKeyboardStateListener listener : listeners) {
-			if (listener != null) {
-				listener.onSoftKeyboardClosed();
-			}
-		}
-	}
-
 }

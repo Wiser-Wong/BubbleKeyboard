@@ -3,16 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ff0000"
+        android:gravity="center"
+        android:text="占位"
+        android:textColor="#000000" />
+
+    <com.wiser.bubblekeyboard.keyboard.KeyboardRecordController
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="占位" />
+        android:layout_alignParentBottom="true"/>
 
-    <include
-        android:id="@+id/cl_keyboard_init"
-        layout="@layout/keyboard_default_view"
+    <com.wiser.bubblekeyboard.keyboard.KeyboardFunctionController1
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
-
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
 </RelativeLayout>

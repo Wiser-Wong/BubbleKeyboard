@@ -1,13 +1,11 @@
 package com.wiser.bubblekeyboard.bubble;
 
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +51,7 @@ public class BubbleDialogFragment extends DialogFragment{
 
 		}
 
-		View view = inflater.inflate(R.layout.bubble_dialog, container, false);
+		View view = inflater.inflate(R.layout.keyboard_bubble_dialog, container, false);
 
 		// 遮挡状态栏
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -101,7 +99,7 @@ public class BubbleDialogFragment extends DialogFragment{
 
 	@Override public void onDetach() {
 		super.onDetach();
-		// if (onBubbleDialogDismiss != null) onBubbleDialogDismiss.onDismiss();
+		 if (onBubbleDialogDismiss != null) onBubbleDialogDismiss.onDismiss();
 	}
 
 	public void setOnBubbleDialogDismiss(OnBubbleDialogDismiss onBubbleDialogDismiss) {

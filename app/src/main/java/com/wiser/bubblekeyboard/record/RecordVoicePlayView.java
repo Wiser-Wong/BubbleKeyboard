@@ -34,7 +34,7 @@ public class RecordVoicePlayView extends ConstraintLayout implements View.OnClic
 	}
 
 	private void init() {
-		LayoutInflater.from(getContext()).inflate(R.layout.record_voice_play_view, this, true);
+		LayoutInflater.from(getContext()).inflate(R.layout.keyboard_record_voice_play_view, this, true);
 		ivRecordPlay = findViewById(R.id.iv_record_play_icon);
 
 		findViewById(R.id.tv_record_again).setOnClickListener(this);
@@ -63,12 +63,13 @@ public class RecordVoicePlayView extends ConstraintLayout implements View.OnClic
 	 *            颜色
 	 */
 	public void setRecordPlayColor(String color) {
-		if (ivRecordPlay != null) ivRecordPlay.setColorFilter(Color.parseColor("#ffff00"));
+		if (ivRecordPlay != null) ivRecordPlay.setColorFilter(Color.parseColor(color));
 	}
 
 	@Override protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 		onRecordVoiceResultListener = null;
+		ivRecordPlay = null;
 	}
 
 	public void setOnRecordVoiceResultListener(OnRecordVoiceResultListener onRecordVoiceResultListener) {

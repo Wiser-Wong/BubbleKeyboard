@@ -18,7 +18,7 @@
         android:layout_height="33dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/shape_round_60c05c_bg"
+        android:src="@drawable/keyboard_shape_round_60c05c_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space_top_view" />
 
@@ -32,13 +32,13 @@
             android:layout_width="19dp"
             android:layout_height="15dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/bubble_vip_icon"
+            android:src="@drawable/keyboard_bubble_vip_icon"
             android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_round_8e76ff_bg"
+            android:background="@drawable/keyboard_shape_round_8e76ff_bg"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="5dp"
@@ -50,7 +50,7 @@
                 android:layout_width="9dp"
                 android:layout_height="9dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/bubble_star_icon" />
+                android:src="@drawable/keyboard_bubble_star_icon" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/bubble_selected"
+        android:src="@drawable/keyboard_bubble_selected"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/iv_bubble_icon" />
